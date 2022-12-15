@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>csv-reader</title>
+</head>
+<body>
+
+    <h1>Function</h1>
+
+    <p>Copy paste this function in the browser console with the participants list opened on the LMS</p>
+
+    <div>
+    
+    function checkBox(name) {<br>
+  // Find all the spans with the class "learner-name"<br>
+  const spans = document.querySelectorAll(`span.learner-name`);<br>
+  <br>
+  // Filter the spans to find the one with the matching name<br>
+  const span = Array.from(spans).filter(s => s.textContent.toLowerCase().includes(name.toLowerCase()))[0];<br>
+  <br>
+  // If the span was found, find the checkbox on the same row and tick it<br>
+  if (span) {<br>
+    const checkbox = span.closest('tr').querySelector('input[type="CHECKBOX"]');<br>
+    if (checkbox) {<br>
+      checkbox.checked = true;<br>
+    }<br>
+  }<br>
+}<br>
+    
+    </div>
+
+    <h1>Select your file .csv</h1>
+
+    <input type="file" name="input-file" id="input-file" accept=".csv">
+
+    <h2>Output:</h2>
+
+    <p>Copy paste this output in the console on the participants list page.<br>Expected format is: checkBox('abcd');</p>
+
+    <div class="output-file"></div>
+
+    <script>
+
+        const formFile = document.querySelector("#input-file");
+        formFile.addEventListener("change", getData, false);
+
+        const output = document.querySelector(".output-file");
+
+        function getData(){
+            
+            window.location.reload(false); //to load the data at page load
+
+            //check that the browser can use FILE
+            if(!window.File || !window.FileReader || !window.FileList || window.Blob){
+                output.innerText="Your browser does not support the File API";
+                return;
+            }
+        }
+
+            if(!formFile.files[0]){
+                output.innerText = "no file selected";
+            } else {
+                let file = formFile.files[0];
+                let fr = new FileReader();
+                fr.onload = receivedText;
+                fr.readAsText(file);
+
+                function receivedText(){
+                    const outputText = fr.result.split(","); //by default the result is only a string. since we use a csv, split by coma.
+                    let fourLetters = ""; //used later to get the 4 last letters of a name. Names do not respect the same format; sometimes "jdoe", "John Doe", "john", "doe"... not consistent. 4 last letters have more chance to be the 4 last letters of last name, which is more unique than first name.
+
+                    outputText.splice(0, 6); //remove the headers of the csv
+
+                    for(let i = 1; i < outputText.length; i++){ //remove all columns to keep only the name column. Warning, in the csv files we get, the last cell of a row is not ended by a coma: first and last column are one single column in this case.
+                        outputText.splice(i, 5);
+                    }
+
+                    outputText.splice(outputText.length -1, 1); //with the loop above, we miss the very last cell that is not useful.
+
+                    outputText.forEach(element => {
+
+                        fourLetters =""; //reset fourletters
+
+                        for(let i = 4; i > 0; i--){ //get the four last letters of the name
+                            fourLetters += element[element.length - i];
+                        }
+
+                        output.innerHTML += `<div>checkBox('${fourLetters}');</div>`; //this is the elements to copy paste in the console to tick automatically the checkbox next to names in the LMS.
+                    });
+                }
+            }
+        
+
+    </script>
+    
+</body>
+</html>
