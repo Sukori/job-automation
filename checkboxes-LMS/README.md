@@ -41,13 +41,13 @@ Once everything is filtered, the output shows: `<div>checkBox('${fourLetters}');
 
 In the function `checkBox(name)`, I first need to get all `span.learner-name`. since I pass only one name at a time, I can just search for one occurence of the `name` in one of the spans. Once I found it, I can search for the closest `input type="checkbox"` and check it.
 
-The LMS shows all name sin uppercase and the case is not always consistent in the csv file. Therefore, it is required to use the `.toLowercase()` function (`.toUppercase()` would also work; my habit is to have all to lowercase).
+The LMS shows all names in uppercase and the case is not always consistent in the csv file. Therefore, it is required to use the `.toLowercase()` function (`.toUppercase()` would also work; my habit is to have all to lowercase).
 
 ## Usage
 
 1. Get the csv file from the zoom speaker who is hosting the session
 2. Open the `csv-reader.html` file
-3. Search for the csv file using the `ìnput` field
+3. Search for the csv file using the `input` field
 4. Open a new tab in the browser and go to the participants list page (LMS)
 5. Open the console on this page `ctrl + shift + i`
 6. Paste the definition for the `checkBox(name)` function in the console
