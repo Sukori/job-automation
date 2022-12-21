@@ -38,7 +38,7 @@ I tried `setTimeout` and `setInterval` to run `autoCompleter2` after some delay.
 
 Oh well. At this point, I'm not gaining any more time, so I may just go with it. The console is opened anyway. I may just switch tabs to inspector and back to console to run my second function.
 
-I do not bother that much because the `autoCompleter1` is the most fcritical function. The aprticipant name changes everytime, but the price may be the same as a previous invoice that I can clone.
+I do not bother that much because the `autoCompleter1` is the most fcritical function. The participant name changes everytime, but the price may be the same as a previous invoice that I can clone.
 
 ## Usage
 
