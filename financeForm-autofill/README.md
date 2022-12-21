@@ -20,7 +20,7 @@ I have no idea about the API and the trafic with this platform is fully encrypte
 
 I can inspect the page and send javascript through the console, though! ;D
 
-The behaviour of the page is weird and some part of the form is held in a popup <iframe>, which made my attempts unexpectedly difficult for a reason that I do not fully understand. This is an internally developed tool, so no documentation available to help understand the situation.
+The behaviour of the page is weird and some part of the form is held in a popup `<iframe>`, which made my attempts unexpectedly difficult for a reason that I do not fully understand. This is an internally developed tool, so no documentation available to help understand the situation.
 
 ## Code
 
@@ -30,11 +30,11 @@ On the principle, the task is dead simple:
 * send text
 * validate
 
-On the practical side, I made two functions : `autoCompleter1`and `autoCompleter2` that I would copy paste one after the other. The issue here is that when the first button is clicked, the following form appears as a popup <iframe>.
+On the practical side, I made two functions : `autoCompleter1`and `autoCompleter2` that I would copy paste one after the other. The issue here is that when the first button is clicked, the following form appears as a popup `<iframe>`.
 
-If I try to run `autoCompleter2` immediately when the popup appears, the form is not detected `const secondTable = document.getElementById("docContents");` returns that it couldn't find "#docContents". However, when I inspect the page, the <form> is displayed from within the <iframe> and I can now run `autoCompleter2` successfully.
+If I try to run `autoCompleter2` immediately when the popup appears, the form is not detected `const secondTable = document.getElementById("docContents");` returns that it couldn't find "#docContents". However, when I inspect the page, the `<form>` is displayed from within the `<iframe>` and I can now run `autoCompleter2` successfully.
 
-I tried `setTimeout` and `setInterval` to run `autoCompleter2` after some delay. I also tried with `onload` events and such, with no more success. As long as I do not inspect the code, the <form> is impossible to retrieve.
+I tried `setTimeout` and `setInterval` to run `autoCompleter2` after some delay. I also tried with `onload` events and such, with no more success. As long as I do not inspect the code, the `<form>` is impossible to retrieve.
 
 Oh well. At this point, I'm not gaining any more time, so I may just go with it. The console is opened anyway. I may just switch tabs to inspector and back to console to run my second function.
 
@@ -60,7 +60,7 @@ If not, I sign and proceed to the next invoice.
 
 ## Conclusion
 
-This process is far from optimal, but it's a bit of fun and it lets me prepare all forms in advance saving me the trouble to copy-paste multiple line from a preparation file to the multiple <input>. I'm saving only a few minutes here and there, but hey, better than nothing!
+This process is far from optimal, but it's a bit of fun and it lets me prepare all forms in advance saving me the trouble to copy-paste multiple line from a preparation file to the multiple `<input>`. I'm saving only a few minutes here and there, but hey, better than nothing!
 
 Getting `autoCompleter2` to run automatically would have been the critical success, but this will remain an enigma...
 
